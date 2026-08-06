@@ -1,3 +1,2 @@
-/Users/viditverma/C++/WeatherAppProfessional/build/CMakeFiles/WeatherAppProfessional.dir
 /Users/viditverma/C++/WeatherAppProfessional/build/CMakeFiles/edit_cache.dir
 /Users/viditverma/C++/WeatherAppProfessional/build/CMakeFiles/rebuild_cache.dir

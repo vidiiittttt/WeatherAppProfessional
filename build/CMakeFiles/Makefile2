@@ -63,11 +63,11 @@ CMAKE_BINARY_DIR = /Users/viditverma/C++/WeatherAppProfessional/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/WeatherAppProfessional.dir/all
+all:
 .PHONY : all
 
 # The main recursive "codegen" target.
-codegen: CMakeFiles/WeatherAppProfessional.dir/codegen
+codegen:
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -75,40 +75,8 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/WeatherAppProfessional.dir/clean
+clean:
 .PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/WeatherAppProfessional.dir
-
-# All Build rule for target.
-CMakeFiles/WeatherAppProfessional.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/viditverma/C++/WeatherAppProfessional/build/CMakeFiles --progress-num=1,2 "Built target WeatherAppProfessional"
-.PHONY : CMakeFiles/WeatherAppProfessional.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/WeatherAppProfessional.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/viditverma/C++/WeatherAppProfessional/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/WeatherAppProfessional.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/viditverma/C++/WeatherAppProfessional/build/CMakeFiles 0
-.PHONY : CMakeFiles/WeatherAppProfessional.dir/rule
-
-# Convenience name for target.
-WeatherAppProfessional: CMakeFiles/WeatherAppProfessional.dir/rule
-.PHONY : WeatherAppProfessional
-
-# codegen rule for target.
-CMakeFiles/WeatherAppProfessional.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/viditverma/C++/WeatherAppProfessional/build/CMakeFiles --progress-num=1,2 "Finished codegen for target WeatherAppProfessional"
-.PHONY : CMakeFiles/WeatherAppProfessional.dir/codegen
-
-# clean rule for target.
-CMakeFiles/WeatherAppProfessional.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/clean
-.PHONY : CMakeFiles/WeatherAppProfessional.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -1,0 +1,7 @@
+{
+    "openWeatherApiKey": "",
+    "weatherApiKey": "",
+    "units": "metric",
+    "defaultCity": "Delhi",
+    "language": "en"
+}

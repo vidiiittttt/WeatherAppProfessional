@@ -1,0 +1,11 @@
+# Build output
+build/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# CMake
+CMakeUserPresents.json
