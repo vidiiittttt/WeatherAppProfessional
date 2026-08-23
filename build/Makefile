@@ -116,6 +116,115 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+#=============================================================================
+# Target rules for targets named WeatherAppProfessional
+
+# Build rule for target.
+WeatherAppProfessional: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 WeatherAppProfessional
+.PHONY : WeatherAppProfessional
+
+# fast build rule for target.
+WeatherAppProfessional/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/build
+.PHONY : WeatherAppProfessional/fast
+
+src/config/Config.o: src/config/Config.cpp.o
+.PHONY : src/config/Config.o
+
+# target to build an object file
+src/config/Config.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/src/config/Config.cpp.o
+.PHONY : src/config/Config.cpp.o
+
+src/config/Config.i: src/config/Config.cpp.i
+.PHONY : src/config/Config.i
+
+# target to preprocess a source file
+src/config/Config.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/src/config/Config.cpp.i
+.PHONY : src/config/Config.cpp.i
+
+src/config/Config.s: src/config/Config.cpp.s
+.PHONY : src/config/Config.s
+
+# target to generate assembly for a file
+src/config/Config.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/src/config/Config.cpp.s
+.PHONY : src/config/Config.cpp.s
+
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/network/HttpClient.o: src/network/HttpClient.cpp.o
+.PHONY : src/network/HttpClient.o
+
+# target to build an object file
+src/network/HttpClient.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/src/network/HttpClient.cpp.o
+.PHONY : src/network/HttpClient.cpp.o
+
+src/network/HttpClient.i: src/network/HttpClient.cpp.i
+.PHONY : src/network/HttpClient.i
+
+# target to preprocess a source file
+src/network/HttpClient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/src/network/HttpClient.cpp.i
+.PHONY : src/network/HttpClient.cpp.i
+
+src/network/HttpClient.s: src/network/HttpClient.cpp.s
+.PHONY : src/network/HttpClient.s
+
+# target to generate assembly for a file
+src/network/HttpClient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/src/network/HttpClient.cpp.s
+.PHONY : src/network/HttpClient.cpp.s
+
+src/services/WeatherService.o: src/services/WeatherService.cpp.o
+.PHONY : src/services/WeatherService.o
+
+# target to build an object file
+src/services/WeatherService.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/src/services/WeatherService.cpp.o
+.PHONY : src/services/WeatherService.cpp.o
+
+src/services/WeatherService.i: src/services/WeatherService.cpp.i
+.PHONY : src/services/WeatherService.i
+
+# target to preprocess a source file
+src/services/WeatherService.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/src/services/WeatherService.cpp.i
+.PHONY : src/services/WeatherService.cpp.i
+
+src/services/WeatherService.s: src/services/WeatherService.cpp.s
+.PHONY : src/services/WeatherService.s
+
+# target to generate assembly for a file
+src/services/WeatherService.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/WeatherAppProfessional.dir/build.make CMakeFiles/WeatherAppProfessional.dir/src/services/WeatherService.cpp.s
+.PHONY : src/services/WeatherService.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -124,6 +233,19 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... WeatherAppProfessional"
+	@echo "... src/config/Config.o"
+	@echo "... src/config/Config.i"
+	@echo "... src/config/Config.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/network/HttpClient.o"
+	@echo "... src/network/HttpClient.i"
+	@echo "... src/network/HttpClient.s"
+	@echo "... src/services/WeatherService.o"
+	@echo "... src/services/WeatherService.i"
+	@echo "... src/services/WeatherService.s"
 .PHONY : help
 
 

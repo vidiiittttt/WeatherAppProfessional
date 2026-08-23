@@ -10,6 +10,7 @@ bool load ();
     std::string getOpenWeatherApiKey() const;
     std::string getWeatherApiKey() const;
     std::string getUnits() const;
+    void setUnits(const std::string& units);
     std::string getDefaultCity() const;
     std::string getLanguage() const;
 

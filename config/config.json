@@ -1,5 +1,5 @@
 {
-    "openWeatherApiKey": "",
+    "openWeatherApiKey": "YOUR_OPENWEATHER_API_KEY",
     "weatherApiKey": "",
     "units": "metric",
     "defaultCity": "Delhi",

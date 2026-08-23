@@ -46,6 +46,11 @@ std::string Config::getUnits() const
     return m_units;
 }
 
+void Config::setUnits(const std::string& units)
+{
+    m_units = units;
+}
+
 std::string Config::getDefaultCity() const 
 {
     return m_defaultCity;
