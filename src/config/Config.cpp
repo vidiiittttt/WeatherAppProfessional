@@ -1,47 +1,81 @@
+
 #include "config/Config.hpp"
 
 #include <fstream>
-#include <iostream>
-
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
 
-Config::Config(const std::string& filePath) : m_filePath(filePath) {}
+Config::Config(const std::string& filePath)
+    : m_filePath(filePath)
+{
+}
 
-bool Config::load() 
+bool Config::load()
 {
     std::ifstream file(m_filePath);
 
     if (!file.is_open())
     {
         return false;
-
     }
 
-    json config;
-    file >> config;
+    try
+    {
+        json config = json::parse(file);
 
-    m_openWeatherApiKey = config["openWeatherApiKey"];
-    m_weatherApiKey = config["weatherApiKey"];
-    m_units = config["units"];
-    m_defaultCity = config["defaultCity"];
-    m_language = config["language"];
+        if (!config.is_object())
+        {
+            return false;
+        }
 
-    return true;
+        m_openWeatherApiKey =
+            config.value("openWeatherApiKey", "");
+
+        m_weatherApiKey =
+            config.value("weatherApiKey", "");
+
+        m_units =
+            config.value("units", "metric");
+
+        m_defaultCity =
+            config.value("defaultCity", "Delhi");
+
+        m_language =
+            config.value("language", "en");
+
+        if (m_units != "metric" &&
+            m_units != "imperial" &&
+            m_units != "standard")
+        {
+            return false;
+        }
+
+        if (m_defaultCity.empty() ||
+            m_language.empty())
+        {
+            return false;
+        }
+
+        return true;
+    }
+    catch (const json::exception&)
+    {
+        return false;
+    }
 }
 
-std::string Config::getOpenWeatherApiKey() const 
+std::string Config::getOpenWeatherApiKey() const
 {
     return m_openWeatherApiKey;
 }
 
-std::string Config::getWeatherApiKey() const 
+std::string Config::getWeatherApiKey() const
 {
     return m_weatherApiKey;
 }
 
-std::string Config::getUnits() const 
+std::string Config::getUnits() const
 {
     return m_units;
 }
@@ -51,12 +85,12 @@ void Config::setUnits(const std::string& units)
     m_units = units;
 }
 
-std::string Config::getDefaultCity() const 
+std::string Config::getDefaultCity() const
 {
     return m_defaultCity;
 }
 
-std::string Config::getLanguage() const 
+std::string Config::getLanguage() const
 {
     return m_language;
 }

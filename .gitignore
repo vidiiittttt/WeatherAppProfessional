@@ -9,3 +9,8 @@ build/
 
 # CMake
 CMakeUserPresents.json
+
+# Local API configuration and secrets
+config/config.json
+.env
+.env.*

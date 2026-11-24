@@ -17,6 +17,12 @@ int main()
     std::cerr << "Failed to load configuration.\n";
     return 1;
 }
+if (config.getOpenWeatherApiKey().empty())
+{
+    std::cerr << "Error: OpenWeather API key is missing. "
+              << "Please configure it in config/config.json.\n";
+    return 1;
+}
     
     std::string unitChoice;
     std::cout << "Choose temperature unit (C for Celsius, F for Fahrenheit): ";

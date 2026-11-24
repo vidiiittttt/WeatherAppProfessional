@@ -1,23 +1,39 @@
+
 #include "network/HttpClient.hpp"
+#include "exceptions/HttpException.hpp"
 
 #include <curl/curl.h>
-#include <stdexcept>
+#include <string>
 
-static size_t writeCallback(void* contents,
-size_t size,
-size_t nmemb,
-void* userData)
+static size_t writeCallback(
+    void* contents,
+    size_t size,
+    size_t nmemb,
+    void* userData)
 {
     size_t totalSize = size * nmemb;
 
-    std::string* response = static_cast<std::string*>(userData);
-    response->append(static_cast<char*>(contents), totalSize);
+    std::string* response =
+        static_cast<std::string*>(userData);
+
+    response->append(
+        static_cast<char*>(contents),
+        totalSize
+    );
+
     return totalSize;
 }
 
 HttpClient::HttpClient()
 {
-    curl_global_init(CURL_GLOBAL_DEFAULT);
+    CURLcode result = curl_global_init(CURL_GLOBAL_DEFAULT);
+
+    if (result != CURLE_OK)
+    {
+        throw HttpException(
+            "Failed to initialize CURL."
+        );
+    }
 }
 
 HttpClient::~HttpClient()
@@ -25,29 +41,79 @@ HttpClient::~HttpClient()
     curl_global_cleanup();
 }
 
-std::string HttpClient::get(const std::string& url) 
+std::string HttpClient::get(const std::string& url)
 {
-    
     CURL* curl = curl_easy_init();
-    
+
     if (!curl)
     {
-        throw std::runtime_error("Failed to initialize CURL");
+        throw HttpException(
+            "Failed to initialize CURL request."
+        );
     }
 
     std::string response;
-    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
-    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-    
-    CURLcode res = curl_easy_perform(curl);
 
-    if (res != CURLE_OK)
+    auto setOption = [&](CURLoption option, auto value)
     {
-        std::string error = curl_easy_strerror(res);
+        CURLcode result = curl_easy_setopt(curl, option, value);
+
+        if (result != CURLE_OK)
+        {
+            std::string error = curl_easy_strerror(result);
+            curl_easy_cleanup(curl);
+
+            throw HttpException(
+                "CURL configuration error: " + error
+            );
+        }
+    };
+
+    setOption(CURLOPT_URL, url.c_str());
+    setOption(CURLOPT_WRITEFUNCTION, writeCallback);
+    setOption(CURLOPT_WRITEDATA, &response);
+    setOption(CURLOPT_FOLLOWLOCATION, 1L);
+
+    // Connection timeout: 10 seconds
+    setOption(CURLOPT_CONNECTTIMEOUT, 10L);
+
+    // Total request timeout: 30 seconds
+    setOption(CURLOPT_TIMEOUT, 30L);
+
+    // Verify SSL certificates
+    setOption(CURLOPT_SSL_VERIFYPEER, 1L);
+    setOption(CURLOPT_SSL_VERIFYHOST, 2L);
+
+    CURLcode result = curl_easy_perform(curl);
+
+    if (result != CURLE_OK)
+    {
+        std::string error = curl_easy_strerror(result);
+
         curl_easy_cleanup(curl);
-        throw std::runtime_error("CURL error: " + error);
+
+        throw HttpException(
+            "Network error: " + error
+        );
+    }
+
+    long httpStatusCode = 0;
+
+    result = curl_easy_getinfo(
+        curl,
+        CURLINFO_RESPONSE_CODE,
+        &httpStatusCode
+    );
+
+    if (result != CURLE_OK)
+    {
+        std::string error = curl_easy_strerror(result);
+
+        curl_easy_cleanup(curl);
+
+        throw HttpException(
+            "Failed to retrieve HTTP status: " + error
+        );
     }
 
     curl_easy_cleanup(curl);
